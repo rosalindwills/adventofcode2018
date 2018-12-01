@@ -19,7 +19,7 @@ export default class PuzzleInput {
 	readAsListOfWordLists() {
 		const lines = this.readAsListOfStrings();
 		const output = [];
-		lines.forEach(element => output.push(element.split(' ')));
+		lines.forEach(element => output.push(element.split(/\s+/)));
 		return output;
 	}
 

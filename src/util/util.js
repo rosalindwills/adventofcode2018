@@ -1,3 +1,5 @@
+import { uniqBy } from 'lodash';
+
 export default class Util {
 	static parseListOfElementsAsNumbers(list) {
 		const output = [];
@@ -17,5 +19,29 @@ export default class Util {
 			number *= -1;
 		}
 		return number;
+	}
+
+	static getLargestAndSmallestNumberInList(list) {
+		const result = {
+			largest: Math.max(...list),
+			smallest: Math.min(...list)
+		};
+		return result;
+	}
+
+	static getSumOfNumberArray(list) {
+		return list.reduce((accumulator, currentValue) => accumulator + currentValue);
+	}
+
+	static containsDuplicates(list) {
+		return uniqBy(list, item => JSON.stringify(item)).length !== list.length;
+	}
+
+	static containsDuplicate(list, value) {
+		return (list.indexOf(value) === list.lastIndexOf(value));
+	}
+
+	static sortLettersInString(value) {
+		return value.split('').sort().join('');
 	}
 }
