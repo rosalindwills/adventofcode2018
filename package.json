@@ -4,8 +4,21 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "babel-node src/tests/PuzzleInput.spec.js",
+		"start": "babel-node index.js",
+		"lint": "eslint src/"
 	},
 	"author": "",
-	"license": "ISC"
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/cli": "^7.1.5",
+		"@babel/core": "^7.1.6",
+		"@babel/node": "^7.0.0",
+		"@babel/plugin-syntax-dynamic-import": "^7.0.0",
+		"@babel/preset-env": "^7.1.6",
+		"eslint": "^5.9.0",
+		"eslint-config-airbnb-base": "^13.1.0",
+		"eslint-config-eslint": "^5.0.1",
+		"eslint-plugin-import": "^2.14.0"
+	}
 }
