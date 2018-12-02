@@ -1,5 +1,4 @@
 import Challenge from '../Challenge';
-import Util from '../../util/Util';
 
 export default class Challenge2 extends Challenge {
 	constructor() {
@@ -8,7 +7,7 @@ export default class Challenge2 extends Challenge {
 	}
 
 	execute() {
-		const coords = this.determineCoordinatePosition();
+		this.determineCoordinatePosition();
 	}
 
 	determineCoordinatePosition() {
@@ -21,8 +20,7 @@ export default class Challenge2 extends Challenge {
 		}
 		console.log(loopWidth);
 		console.log(loopMax);
-		let perimeter = ((loopWidth * 2) + ((loopWidth - 1) * 2));
+		const perimeter = ((loopWidth * 2) + ((loopWidth - 1) * 2));
 		console.log(perimeter);
 	}
 }
-

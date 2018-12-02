@@ -4,7 +4,6 @@ export default class Challenge5 extends Challenge {
 	constructor() {
 		super('2017/puzzle5');
 		this.numbers = this.puzzle.readAsListOfNumbers();
-		console.log(this.numbers);
 		this.result1 = 0;
 		this.result2 = 0;
 	}
