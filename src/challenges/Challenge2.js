@@ -1,4 +1,6 @@
+import { zip, unzip, remove } from 'lodash';
 import Challenge from './Challenge';
+import Util from '../util/Util';
 
 export default class Challenge2 extends Challenge {
 	constructor() {
@@ -12,46 +14,27 @@ export default class Challenge2 extends Challenge {
 	}
 
 	calculateResult1() {
-		let hasDuplicate = 0;
-		let hasTriplicate = 0;
+		const counters = [];
 		this.input.forEach((row) => {
-			const counter = {};
 			const chars = row.split('');
-			chars.forEach((letter) => {
-				if (!counter[letter]) {
-					counter[letter] = 1;
-				} else {
-					counter[letter]++;
-				}
-			});
-			if (Object.values(counter).includes(2)) {
-				hasDuplicate++;
-			}
-			if (Object.values(counter).includes(3)) {
-				hasTriplicate++;
-			}
+			const counter = Util.getCountOfValues(chars);
+			counters.push(counter);
 		});
+		const hasDuplicate = counters.filter(c => Object.values(c).includes(2)).length;
+		const hasTriplicate = counters.filter(c => Object.values(c).includes(3)).length;
 		this.result1 = hasDuplicate * hasTriplicate;
 	}
 
 	calculateResult2() {
 		this.input.forEach((row, index) => {
-			const chars1 = row.split('');
 			this.input.forEach((row2, index2) => {
 				if (index2 === index || this.result2) {
 					return;
 				}
-				const chars2 = row2.split('');
-				let notInCommon = 0;
-				let matchIndex = 0;
-				chars1.forEach((_, charIndex) => {
-					if (chars2[charIndex] !== chars1[charIndex]) {
-						notInCommon++;
-						matchIndex = charIndex;
-					}
-				});
-				if (notInCommon === 1) {
-					this.result2 = row.slice(0, matchIndex) + row.slice(matchIndex + 1);
+				const zipped = zip(row.split(''), row2.split(''));
+				const cleaned = remove(zipped, i => i[0] === i[1]);
+				if (cleaned.length === row.length - 1) {
+					this.result2 = unzip(cleaned)[0].join('');
 				}
 			});
 		});

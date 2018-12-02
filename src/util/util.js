@@ -44,4 +44,16 @@ export default class Util {
 	static sortLettersInString(value) {
 		return value.split('').sort().join('');
 	}
+
+	static getCountOfValues(list) {
+		const counter = {};
+		list.forEach((value) => {
+			if (!counter[value]) {
+				counter[value] = 1;
+			} else {
+				counter[value]++;
+			}
+		});
+		return counter;
+	}
 }
